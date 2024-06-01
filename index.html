@@ -36,7 +36,7 @@ var serial = {};
     let readLoop = () => {
       const {
         endpointNumber
-      } = this.device_.configuration.interfaces[0].alternate.endpoints[0]
+      } = this.device_.configuration.interfaces[5].alternate.endpoints[0]
       this.device_.transferIn(endpointNumber, 64).then(result => {
         this.onReceive(result.data);
         readLoop();
@@ -51,7 +51,7 @@ var serial = {};
             return this.device_.selectConfiguration(1);
           }
         })
-        .then(() => this.device_.claimInterface(0))
+        .then(() => this.device_.claimInterface(5))
         .then(() => {
           readLoop();
         });
